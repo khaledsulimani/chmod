@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="chmod"/>
+        <attribute name="authors" value="PCD"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="1447-01-28 06:48:31 &#1589;"/>
+        <attribute name="created" value="UENEO0RJWFRSUjsxNDQ3LTAxLTI4OzA2OjEwOjAwINi1OzM0MDI="/>
+        <attribute name="edited" value="UENEO0RJWFRSUjsxNDQ3LTAxLTI4OzA2OjQ4OjMxINi1OzE7MzUyNQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <input variable="ls -i &lt;file_name&gt;"/>
+            <if expression="readable">
+                <then>
+                    <if expression="writeable">
+                        <then>
+                            <output expression="apply chmod permission" newline="True"/>
+                        </then>
+                        <else>
+                            <assign variable="who has write access" expression="owner group others?"/>
+                            <input variable="chmod u+w chmod g+w chmod o+w"/>
+                            <output expression="apply chmod permission" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <assign variable="who has read access" expression="owner group others?"/>
+                    <input variable="chmod u+r chmod g+r chmod o+r"/>
+                    <output expression="apply chmod permission" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
